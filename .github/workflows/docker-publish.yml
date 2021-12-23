@@ -21,8 +21,24 @@ jobs:
             java-version: '16' 
             distribution: 'adopt'
             
-      - name: Setup Java JDK
+      - name: Build Eureka Naming Server Container Image
         working-directory: ./06-naming-service
-        run: mvn spring-boot:build-image -DskipTests     
+        run: mvn spring-boot:build-image -DskipTests
+     
+      - name: Build API Gateway Container Image
+        working-directory: ./06-api-gateway
+        run: mvn spring-boot:build-image -DskipTests
+      
+      - name: Build Cambio Microservice Jar
+        working-directory: ./05-cambio-service
+        run: mvn clean package -DskipTests  
+      
+      - name: Build Book Microservice Jar
+        working-directory: ./05-book-service
+        run: mvn clean package -DskipTests
+     
+      - name: Docker Compose Build
+        working-directory: ./
+        run: docker-compose build 
       
 
