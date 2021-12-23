@@ -22,7 +22,7 @@ jobs:
             distribution: 'adopt'
             
       - name: Build Eureka Naming Server Container Image
-        working-directory: ./06-naming-server
+        working-directory: ./06-naming-service
         run: mvn spring-boot:build-image -DskipTests
      
       - name: Build API Gateway Container Image
